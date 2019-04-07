@@ -70,6 +70,7 @@ while running:
     if dealer.hand_value() < 17:
         print('The dealer takes their turn.')
         dealer.dealer_turn(d.deal_card())
+        print('The dealer\'s hand is now a ' + str(dealer.hand)[1:-1])
         print('The dealer now has a score of ' + str(dealer.hand_value()) + '.')
 
     if dealer.hand_value() > 21:
