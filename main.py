@@ -84,10 +84,11 @@ while running:
                 print('\nThe winners are Players ' + str(winners)[1:-1])
             print('The winning score was ' + str(win_score))
 
-    replay = input('\nWould you like to play again? (Y/N)')
-    while replay != 'Y' or replay != 'N':
-        input('\nWould you like to play again? (Y/N)')
-    if input == 'Y':
+    replay = input('\nWould you like to play again? (Y/N) ')
+    while replay != 'Y' and replay != 'N':
+        replay = input('\nWould you like to play again? (Y/N) ')
+        print(replay)
+    if replay == 'Y':
         pass
     else:
         running = False
