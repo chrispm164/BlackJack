@@ -1,6 +1,7 @@
 from Card import *
 
-class Deck():
+
+class Deck:
 
     def __init__(self):
         self.deck = []
@@ -16,7 +17,7 @@ class Deck():
 
     def deal_card(self):
         import random
-        if self.deck == []:
+        if not self.deck:
             self.deck = Deck().deck
             random.shuffle(self.deck)
         c = self.deck[0]

@@ -1,5 +1,5 @@
 from Deck import *
-from Player import *
+from Dealer import *
 
 players = []
 win_score = 0
@@ -7,6 +7,7 @@ winners = []
 
 d = Deck()
 d.shuffle()
+dealer = Dealer()
 
 print('Welcome to BlackJack.\n')
 
@@ -27,10 +28,16 @@ for p in players:
     p.add_card(d.deal_card())
     p.add_card(d.deal_card())
 
+dealer.add_card(d.deal_card())
+dealer.add_card(d.deal_card())
+
 for p in players:
     print('\nIt is Player ' + str(players.index(p) + 1) + '\'s turn. ')
     print('Your hand is a ' + str(p.hand)[1:-1])
     print('It has a value of ' + str(p.hand_value()))
+    for o in players:
+        if o != p:
+            print('Player ' + str(players.index(o) + 1) + ' is showing a ' + str(o.hand[0]))
     action = ''
     while action != 'H' or action != 'S':
         action = input('\nWould you like to hit or stand? (H/S)')
@@ -53,5 +60,22 @@ for p in players:
                 winners.append(players.index(p) + 1)
             break
 
-print('The winner(s) are Player(s) ' + str(winners)[1:-1])
-print('The winning score was ' + str(win_score))
+print('\nDealer\'s Turn')
+print('The dealer\'s hand is a ' + str(dealer.hand)[1:-1])
+print('The dealer has a score of ' + str(dealer.hand_value()) + '.')
+if dealer.hand_value() < 17:
+    print('The dealer takes their turn.')
+    dealer.dealer_turn(d.deal_card())
+    print('The dealer now has a score of ' + str(dealer.hand_value()) + '.')
+
+if dealer.hand_value() > 21:
+    print('The dealer busts.')
+else:
+    if dealer.hand_value() > win_score:
+        print('\nThe dealer wins with a score of ' + str(dealer.hand_value()) + '.')
+    else:
+        if len(winners) == 1:
+            print('\nThe winner is Player ' + str(winners)[1:-1])
+        else:
+            print('\nThe winners are Players ' + str(winners)[1:-1])
+        print('The winning score was ' + str(win_score))
