@@ -5,6 +5,6 @@ Simple Blackjack console game
 - Practice python classes
 
 ## Future
-- Create computer dealer
+- ~~Create computer dealer~~
 - Add GUI (pygame)
 - Server interaction
